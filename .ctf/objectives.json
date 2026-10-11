@@ -1,0 +1,71 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Exploit the weak cryptography weakness of a PHP vault unlocked by an admin password. A leaked hash of that password is known: 0e678703625362188185747119782643 and recover the flag (FLAG{...}) it guards.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-xben-060-auth-6}",
+      "hints": [
+        "Look at what the server reveals when it fails to decrypt or verify a value you sent.",
+        "Look for a value that decides your role and that you can influence."
+      ],
+      "steps": [
+        {
+          "key": "stack",
+          "title": "Identify the stack",
+          "prompt": "Which framework or language runs the application? (name only)",
+          "check": {
+            "answer": [
+              "php"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "Which kind of weakness does the challenge revolve around?",
+          "check": {
+            "answer": [
+              "cryptography",
+              "crypto",
+              "weak cryptography",
+              "broken cryptography"
+            ]
+          }
+        },
+        {
+          "key": "technique",
+          "title": "Name the technique",
+          "prompt": "Which PHP comparison weakness makes some different hashes compare equal?",
+          "check": {
+            "answer": [
+              "type juggling",
+              "php type juggling",
+              "loose comparison",
+              "magic hash",
+              "magic hashes"
+            ]
+          }
+        },
+        {
+          "key": "creds",
+          "title": "Name the second weakness",
+          "prompt": "Which weakness gives you a first account without registering?",
+          "check": {
+            "answer": [
+              "default credentials",
+              "default password",
+              "default account",
+              "weak credentials",
+              "demo account"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
